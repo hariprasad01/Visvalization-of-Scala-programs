@@ -1,13 +1,4 @@
-main( args:Array[String])
-hello()
-main( args:Array[String])
-hi()
-main( args:Array[String])
-Array(5,4,3,2,1)
-main( args:Array[String])
-Iterative condition: m1<-marks{NIL}
-Iterative condition: i<- 0 to (marks.length-1{marks(i)
-main( args:Array[String])
+main(args: Array[String])
+Iterative condition:  a <- 1 to 10{addInt(a,a+1)
+main(args: Array[String])
 }
-quickSort(marks)
-main( args:Array[String])

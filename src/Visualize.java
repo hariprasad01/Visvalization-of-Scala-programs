@@ -37,28 +37,51 @@ public class Visualize {
 		LineBorder line = new LineBorder(Color.blue, 2, true);
 		CompoundBorder compound = new CompoundBorder(line, border);
 		// p1.setSize(300,400);
-		JLabel labels[] = new JLabel[seq.length];
+		JLabel labels[] = new JLabel[(seq.length)*2];
 		ImageIcon image = new ImageIcon(
-				"C:\\Users\\Hari Prasad\\Documents\\GitHub\\Visvalization-of-Scala-programs\\images\\smalldarrow.jpg");
-		JLabel imagelabel = new JLabel();
-		imagelabel.setIcon(image);
-		imagelabel.setOpaque(true);
-		imagelabel.setBorder(compound);
-		for (int i = 0; i < seq.length; i++) {
-			labels[i] = new JLabel("", JLabel.CENTER);
-			labels[i].setText(seq[i]);
-			labels[i].setForeground(Color.BLACK);
-			labels[i].setOpaque(true);
-			labels[i].setBackground(Color.orange);
-			labels[i].setBorder(compound);
-			labels[i].setHorizontalAlignment(SwingConstants.CENTER);
-			labels[i].setVerticalAlignment(SwingConstants.CENTER);
-			labels[i].setAlignmentX(Component.CENTER_ALIGNMENT);
-			p1.add(labels[i]);
-			p1.add(imagelabel);
+				"C:\\Users\\Hari Prasad\\Documents\\GitHub\\Visvalization-of-Scala-programs\\images\\tinyArrow.png");
+		boolean flag = true;
+		for (int i = 0, j = 0; i < (seq.length)*2; i++) {
+			if(flag)
+			{
+				
+				labels[i] = new JLabel("", JLabel.CENTER);
+				labels[i].setText(seq[j]);
+				labels[i].setForeground(Color.BLACK);
+				labels[i].setOpaque(true);
+				labels[i].setBackground(Color.orange);
+				labels[i].setBorder(compound);
+				labels[i].setHorizontalAlignment(SwingConstants.CENTER);
+				labels[i].setVerticalAlignment(SwingConstants.CENTER);
+				labels[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+				p1.add(labels[i]);
+				j++;
+				flag = false;
+			}
+			else
+			{
+				labels[i] = new JLabel("", JLabel.CENTER);
+				labels[i].setOpaque(true);
+				labels[i].setIcon(image);
+				labels[i].setSize(1, 1);
+				labels[i].setHorizontalAlignment(SwingConstants.CENTER);
+				labels[i].setVerticalAlignment(SwingConstants.CENTER);
+				labels[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+				p1.add(labels[i]);
+				flag = true;
+			}
+				
 		}
-		
-		mainFrame.add(p1, BorderLayout.CENTER);
+		/*JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setBounds(50, 30, 300, 500);
+        p1.add(scrollPane);*/
+        mainFrame.setContentPane(p1);
+        mainFrame.pack();
+        mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        mainFrame.setVisible(true);
+		//mainFrame.add(p1, BorderLayout.CENTER);
 		mainFrame.setVisible(true);
    
    }
