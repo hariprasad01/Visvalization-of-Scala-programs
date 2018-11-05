@@ -3,13 +3,17 @@ import java.util.regex.Matcher;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
 import java.util.regex.Pattern;
 import java.io.*;
 import java.nio.file.*;;
 
 public class PatternMatcher1 {
 	   private JFrame mainFrame;
-	   private JLabel headerLabel;  
+	   //private JLabel headerLabel;  
 	   private JPanel controlPanel;
 	   
 	   public  PatternMatcher1() {
@@ -25,28 +29,51 @@ public class PatternMatcher1 {
 	            System.exit(0);
 	         }        
 	      });    
-	      headerLabel = new JLabel("", JLabel.CENTER);        
-	      headerLabel.setSize(400,400);
-	      headerLabel.setOpaque(true);
-	      headerLabel.setBackground(Color.ORANGE);
-	      controlPanel = new JPanel();
-	      controlPanel.setLayout(new FlowLayout());
+	      //headerLabel = new JLabel("", JLabel.CENTER);        
+	      //headerLabel.setSize(400,400);
+	      //headerLabel.setOpaque(true);
+	      //headerLabel.setBackground(Color.ORANGE);
+	      //controlPanel = new JPanel();
+	      //controlPanel.setLayout(new FlowLayout());
 
-	      mainFrame.add(headerLabel);
-	      mainFrame.add(controlPanel);
+	      //mainFrame.add(headerLabel);
+	      //mainFrame.add(controlPanel);
 	    
 	      mainFrame.setVisible(true);  
 	   }
 	   private void showJFrameDemo() throws Exception{
 		  String[] seq = readFileAsString("C:\\Users\\Hari Prasad\\Documents\\GitHub\\Visvalization-of-Scala-programs\\ExeSeq.txt").split("\n");
-	      String s = "<html>";
+	      /*String s = "<html>";
 		  for(int i = 0; i< seq.length;i++)
 	      {
 	    	  s = s + seq[i] + "<br><br>"; 
 	    	  
 	      }
-		  s = s + "</html>";
-		  headerLabel.setText(s); 
+		  s = s + "</html>";*/
+		  //headerLabel.setText(s); 
+		  JPanel p1 = new JPanel();
+			p1.setLayout(new BoxLayout(p1, BoxLayout.PAGE_AXIS));
+			//p1.setLayout(new GridLayout(seq.length,1));
+			
+			EmptyBorder border = new EmptyBorder(5, 20, 5, 20);
+			LineBorder line = new LineBorder(Color.blue, 2, true);
+			CompoundBorder compound = new CompoundBorder(line, border);
+			//p1.setSize(300,400);
+			 JLabel labels[] = new JLabel[seq.length];
+
+			for (int i=0; i<seq.length; i++)
+			{
+				labels[i] = new JLabel("", JLabel.CENTER);
+				labels[i].setText(seq[i]);
+				labels[i].setForeground(Color.BLACK);
+				labels[i].setOpaque(true);
+				labels[i].setBackground(Color.orange);
+			    labels[i].setBorder(compound);
+			    labels[i].setHorizontalAlignment(SwingConstants.CENTER);
+			    labels[i].setVerticalAlignment(SwingConstants.CENTER);
+			    labels[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+		    	   p1.add(labels[i]);
+			}
 	      final JFrame frame = new JFrame();
 	      frame.setSize(300, 300);
 	      frame.setLayout(new FlowLayout());       
@@ -56,6 +83,7 @@ public class PatternMatcher1 {
 	            frame.dispose();
 	         }        
 	      });    
+	      mainFrame.add(p1, BorderLayout.CENTER);
 	      mainFrame.setVisible(true);  
 	   }
 	public static String readFileAsString(String fileName) throws Exception {
