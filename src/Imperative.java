@@ -23,13 +23,13 @@ public class Imperative {
 		 head = head.substring(head.indexOf("(") + 1);
 		 head = head.substring(0, head.indexOf(")"));
 		 condition=head;
-		 System.out.print("Iterative condition: "+ condition+"{");
+		 System.out.print("Iterative condition: "+ condition);
 		 find=functioncalls(data,fname);
 		 if(!find)
 		 {
              System.out.print("NIL");
 		 }		
-		 System.out.println("}");
+		 //System.out.println("}");
 
 	 }
 	 
@@ -161,7 +161,7 @@ public class Imperative {
     }
 
     public static void main(String[] args) throws Exception {
-        String data = readFileAsString("C:\\Users\\Hari Prasad\\Desktop\\test.txt");
+        String data = readFileAsString("C:\\Users\\Hari Prasad\\Desktop\\recursiveSum.txt");
         PrintStream executionSequence = new PrintStream(new File("ExeSeq.txt"));
         System.setOut(executionSequence);
         Pattern p = Pattern.compile("(main\\([^\\)]*\\))");

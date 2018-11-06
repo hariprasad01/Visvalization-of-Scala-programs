@@ -48,15 +48,32 @@ public class Visualize {
 		for (int i = 0, j = 0; i < (seq.length)*2; i++) {
 			if(flag)
 			{
-				Pattern p = Pattern.compile("Iterative");
-				Matcher m = p.matcher(seq[j]);
-				if(m.find())
+				Pattern pIterative = Pattern.compile("Iterative");
+				Pattern pRecursive = Pattern.compile("Recursive");
+				Matcher mIterative = pIterative.matcher(seq[j]);
+				Matcher mRecursive = pRecursive.matcher(seq[j]);
+				if(mIterative.find())
 				{
 					labels[i] = new JLabel("", JLabel.CENTER);
 					labels[i].setText(seq[j]);
 					labels[i].setForeground(Color.BLACK);
 					labels[i].setOpaque(true);
 					labels[i].setBackground(Color.cyan);
+					labels[i].setBorder(compound);
+					labels[i].setHorizontalAlignment(SwingConstants.CENTER);
+					labels[i].setVerticalAlignment(SwingConstants.CENTER);
+					labels[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+					p1.add(labels[i]);
+					j++;
+					flag = false;
+				}
+				else if(mRecursive.find())
+				{
+					labels[i] = new JLabel("", JLabel.CENTER);
+					labels[i].setText(seq[j]);
+					labels[i].setForeground(Color.BLACK);
+					labels[i].setOpaque(true);
+					labels[i].setBackground(Color.ORANGE);
 					labels[i].setBorder(compound);
 					labels[i].setHorizontalAlignment(SwingConstants.CENTER);
 					labels[i].setVerticalAlignment(SwingConstants.CENTER);
