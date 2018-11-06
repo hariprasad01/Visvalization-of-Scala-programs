@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -18,6 +21,7 @@ public class Visualize {
    private void prepareGUI(){
       mainFrame = new JFrame("Execution Sequence");
       mainFrame.setSize(500,500);
+      mainFrame.setBackground(Color.BLACK);
       mainFrame.addWindowListener(new WindowAdapter() {
          public void windowClosing(WindowEvent windowEvent){
             System.exit(0);
@@ -44,25 +48,45 @@ public class Visualize {
 		for (int i = 0, j = 0; i < (seq.length)*2; i++) {
 			if(flag)
 			{
-				
-				labels[i] = new JLabel("", JLabel.CENTER);
-				labels[i].setText(seq[j]);
-				labels[i].setForeground(Color.BLACK);
-				labels[i].setOpaque(true);
-				labels[i].setBackground(Color.orange);
-				labels[i].setBorder(compound);
-				labels[i].setHorizontalAlignment(SwingConstants.CENTER);
-				labels[i].setVerticalAlignment(SwingConstants.CENTER);
-				labels[i].setAlignmentX(Component.CENTER_ALIGNMENT);
-				p1.add(labels[i]);
-				j++;
-				flag = false;
+				Pattern p = Pattern.compile("Iterative");
+				Matcher m = p.matcher(seq[j]);
+				if(m.find())
+				{
+					labels[i] = new JLabel("", JLabel.CENTER);
+					labels[i].setText(seq[j]);
+					labels[i].setForeground(Color.BLACK);
+					labels[i].setOpaque(true);
+					labels[i].setBackground(Color.cyan);
+					labels[i].setBorder(compound);
+					labels[i].setHorizontalAlignment(SwingConstants.CENTER);
+					labels[i].setVerticalAlignment(SwingConstants.CENTER);
+					labels[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+					p1.add(labels[i]);
+					j++;
+					flag = false;
+				}
+				else
+				{
+					labels[i] = new JLabel("", JLabel.CENTER);
+					labels[i].setText(seq[j]);
+					labels[i].setForeground(Color.BLACK);
+					labels[i].setOpaque(true);
+					labels[i].setBackground(Color.WHITE);
+					labels[i].setBorder(compound);
+					labels[i].setHorizontalAlignment(SwingConstants.CENTER);
+					labels[i].setVerticalAlignment(SwingConstants.CENTER);
+					labels[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+					p1.add(labels[i]);
+					j++;
+					flag = false;
+				}	
 			}
 			else
 			{
 				labels[i] = new JLabel("", JLabel.CENTER);
 				labels[i].setOpaque(true);
 				labels[i].setIcon(image);
+				labels[i].setBackground(Color.WHITE);
 				labels[i].setSize(1, 1);
 				labels[i].setHorizontalAlignment(SwingConstants.CENTER);
 				labels[i].setVerticalAlignment(SwingConstants.CENTER);
@@ -76,7 +100,8 @@ public class Visualize {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         scrollPane.setBounds(50, 30, 300, 500);
-        p1.add(scrollPane);*/
+        p1.add(scrollPane);*/ 
+		p1.setBackground(Color.WHITE);
         mainFrame.setContentPane(p1);
         mainFrame.pack();
         mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
